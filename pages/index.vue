@@ -1,14 +1,11 @@
+<script lang="ts" setup>
+const { data } = await useFetch('/api/almanac')
+</script>
+
 <template>
-  <div>
-    <Logos mb-6 />
+  <section>
     <Suspense>
-      <PageView />
-      <template #fallback>
-        <div op50 italic>
-          <span animate-pulse>Loading...</span>
-        </div>
-      </template>
+      {{ data.html }}
     </Suspense>
-    <InputEntry />
-  </div>
+  </section>
 </template>
