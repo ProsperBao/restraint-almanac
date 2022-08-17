@@ -1,6 +1,6 @@
 <script setup>
 useHead({
-  title: 'Vitesse Nuxt 3',
+  title: '食材黄历 - 自律人的日历',
   link: [
     {
       rel: 'icon', type: 'image/svg+xml', href: '/icon.svg',
