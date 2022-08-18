@@ -11,10 +11,16 @@ export default defineEventHandler(async () => {
 
   const result = yi.filter(item => !ji.some(jiItem => jiItem.name === item.name))
 
-  return {
-    yi: result,
-    yiStr: data.html.yi,
-    ji,
-    jiStr: data.html.ji,
-  }
+  return [
+    {
+      title: '宜',
+      list: result,
+      str: data.html.yi,
+    },
+    {
+      title: '忌',
+      list: ji,
+      str: data.html.ji,
+    },
+  ]
 })
