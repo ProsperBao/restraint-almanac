@@ -24,7 +24,7 @@ const { data } = await useFetch('/api/almanac')
   <hr my-10>
   <div text-left w-100 m-auto>
     <div v-for="item in data" :key="item.title">
-      宜: {{ item.str }}
+      {{ item.title }}: {{ item.str }}
     </div>
   </div>
 </template>
