@@ -1,8 +1,9 @@
 <script lang="ts" setup>
+import type { Ref } from 'vue'
 import type { Keyword } from '~~/data/match'
 
 const { data } = await useFetch('/api/almanac')
-const list: [string, Keyword[]][] = [['宜', data.value.yi], ['忌', data.value.ji]]
+const list: Ref<[string, Keyword[]][]> = ref([['宜', data.value.yi], ['忌', data.value.ji]] as [string, Keyword[]][])
 </script>
 
 <template>
