@@ -19,16 +19,8 @@ export default defineEventHandler(async () => {
 
   const result = yi.filter(item => !ji.some(jiItem => jiItem.name === item.name))
 
-  return [
-    {
-      title: '宜',
-      list: result,
-      str: data.html.yi,
-    },
-    {
-      title: '忌',
-      list: ji,
-      str: data.html.ji,
-    },
-  ]
+  return {
+    yi: result.map(keyword => `${keyword.emoji} ${keyword.name}`).join('、'),
+    ji: ji.map(keyword => `${keyword.emoji} ${keyword.name}`).join('、'),
+  }
 })
