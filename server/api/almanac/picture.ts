@@ -1,32 +1,22 @@
-// import almanac from '~~/utils/almanac'
-// import { DrawCard } from '~~/utils/draw'
 import fs from 'fs'
-import path from 'path'
-
-function readfilelist(dir: any, fileslist: string[] = []) {
-  const files = fs.readdirSync(dir)
-  files.forEach((item) => {
-    const fullpath = path.join(dir, item)
-    const stat = fs.statSync(fullpath)
-    if (stat.isDirectory())
-      readfilelist(path.join(dir, item), fileslist) // 递归读取文件
-
-    else
-      fileslist.push(fullpath)
-  })
-  return fileslist
-}
+import axios from 'axios'
+import almanac from '~~/utils/almanac'
+import { DrawCard } from '~~/utils/draw'
 
 export default defineEventHandler(async () => {
-  // const result = await almanac()
-  // try {
-  //   const drawCard = new DrawCard({})
-  //   return drawCard.draw(result)
-  // }
-  // catch (e) {
-  //   return e
-  // }
-  const fileslist: string[] = []
-  readfilelist('../', fileslist)
-  return fileslist
+  const result = await almanac()
+
+  // 判断文件是否存在
+  if (!fs.existsSync('fonts/segoeui.ttf')) {
+    const res = await axios.get('https://almanac.baii.icu/fonts/segoeui.ttf', { responseType: 'arraybuffer' })
+    fs.writeFileSync('fonts/segoeui.ttf', res.data)
+  }
+
+  try {
+    const drawCard = new DrawCard({})
+    return drawCard.draw(result)
+  }
+  catch (e) {
+    return e
+  }
 })
