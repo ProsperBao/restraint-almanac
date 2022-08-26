@@ -1,15 +1,8 @@
 <script lang="ts" setup>
-// import { draw } from '~~/utils/draw'
-
 const { data } = await useFetch('/api/almanac')
-// const canvas = ref<HTMLCanvasElement>()
-// onMounted(() => {
-//   canvas.value && draw(canvas.value, data.value)
-// })
 </script>
 
 <template>
-  <!-- <canvas ref="canvas" absolute top="50%" left="50%" transform="translate-x--50% translate-y--61.1%" opacity-70 /> -->
   <div v-if="isCard" m-auto inline-block text-left w-100 border border-rounded shadow>
     <div v-for="(item, idx) in data" :key="item.title" flex items-center :class="{ 'border-b': idx === 0 }">
       <div p-4 text-xl>
