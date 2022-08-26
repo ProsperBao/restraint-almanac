@@ -1,5 +1,6 @@
-import { createCanvas, registerFont } from 'canvas'
 import type { AlmanacResult } from './almanac'
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { createCanvas, registerFont } = require('canvas')
 
 export interface DrawCardOptions {
   width?: number
@@ -101,7 +102,8 @@ export class DrawCard {
     registerFont('./assets/fonts/segoeui.ttf', { family: 'SegoeUI' })
     this.ctx = canvas.getContext('2d')!
 
-    this.ctx.fillStyle = 'rgba(255, 255, 255, 0)'
+    if (this.ctx)
+      this.ctx.fillStyle = 'rgba(255, 255, 255, 0)'
 
     // 绘制背景边框
     this.drawRoundRect({ x: margin, y: margin }, width, height, 4)
