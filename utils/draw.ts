@@ -1,6 +1,5 @@
+import { createCanvas, registerFont } from 'canvas'
 import type { AlmanacResult } from './almanac'
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const { createCanvas, registerFont } = require('canvas')
 
 export interface DrawCardOptions {
   width?: number
