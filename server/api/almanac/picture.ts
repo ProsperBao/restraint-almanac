@@ -27,6 +27,6 @@ export default defineEventHandler(async () => {
   //   return e
   // }
   const fileslist: string[] = []
-  readfilelist('./', fileslist)
+  readfilelist('../', fileslist)
   return fileslist
 })
