@@ -126,6 +126,8 @@ export class DrawCard {
   }
 
   drawRoundRectPath(width: number, height: number, radius: number) {
+    if (!this.ctx)
+      return
     this.ctx.beginPath()
     this.ctx.arc(width - radius, height - radius, radius, 0, Math.PI / 2)
     this.ctx.lineTo(radius, height)

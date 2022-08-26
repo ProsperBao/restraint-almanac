@@ -8,7 +8,6 @@ export default defineEventHandler(async () => {
     return drawCard.draw(result)
   }
   catch (e) {
-    console.log(e)
     return null
   }
 })
