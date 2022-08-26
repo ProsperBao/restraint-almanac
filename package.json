@@ -4,8 +4,7 @@
   "scripts": {
     "build": "nuxi build",
     "dev": "nuxi dev",
-    "font": "cp .output/public/fonts/segoeui.ttf .output/server/fonts/segoeui.ttf",
-    "start": "pnpm font && node .output/server/index.mjs",
+    "start": "tree && node .output/server/index.mjs",
     "lint": "eslint .",
     "postinstall": "nuxi prepare"
   },
