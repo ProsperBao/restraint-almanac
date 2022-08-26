@@ -123,7 +123,7 @@ export class DrawCard {
     }
     this.drawLine({ x: startX, y: margin }, { x: startX, y: height + margin + border })
 
-    return canvas.toBuffer('image/png')
+    return canvas.toBuffer('image/png', { compressionLevel: 3, filters: canvas.PNG_FILTER_NONE })
   }
 
   drawRoundRectPath(width: number, height: number, radius: number) {
