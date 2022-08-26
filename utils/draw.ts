@@ -1,7 +1,5 @@
-import { createCanvas } from 'canvas'
+import { createCanvas, registerFont } from 'canvas'
 import type { AlmanacResult } from './almanac'
-
-// registerFont('comicsans.ttf', { family: 'Comic Sans' })
 
 export interface DrawCardOptions {
   width?: number
@@ -42,7 +40,7 @@ export class DrawCard {
       padding: 15,
       margin: 8,
       border: 1,
-      font: 'ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
+      font: 'SegoeUI',
     }
     this.options = this.merageOptions(defaultOptions, (options || {}))
   }
@@ -100,6 +98,7 @@ export class DrawCard {
     const height = last.y + last.height + (padding / 2) + border
 
     const canvas = createCanvas(width + margin * 2, height + margin * 2)
+    registerFont('./assets/fonts/segoeui.ttf', { family: 'SegoeUI' })
     this.ctx = canvas.getContext('2d')!
 
     this.ctx.fillStyle = 'rgba(255, 255, 255, 0)'
@@ -164,7 +163,7 @@ export class DrawCard {
   drawTextRoundRect(tagRect: DrawCardTagRect, content: string) {
     if (!this.ctx)
       return
-    const { fontSize, fontPadding, padding, font } = this.options
+    const { fontSize, padding, font } = this.options
     const position = { x: tagRect.x, y: tagRect.y }
     this.drawRoundRect(position, tagRect.width + (padding / 2), tagRect.height, 4)
     // 填充文字

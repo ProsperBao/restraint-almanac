@@ -7,7 +7,8 @@ export default defineEventHandler(async () => {
     const drawCard = new DrawCard({})
     return drawCard.draw(result)
   }
-  catch {
+  catch (e) {
+    console.log(e)
     return null
   }
 })
