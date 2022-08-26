@@ -1,6 +1,21 @@
 // import almanac from '~~/utils/almanac'
 // import { DrawCard } from '~~/utils/draw'
 import fs from 'fs'
+import path from 'path'
+
+function readfilelist(dir: any, fileslist: string[] = []) {
+  const files = fs.readdirSync(dir)
+  files.forEach((item) => {
+    const fullpath = path.join(dir, item)
+    const stat = fs.statSync(fullpath)
+    if (stat.isDirectory())
+      readfilelist(path.join(dir, item), fileslist) // 递归读取文件
+
+    else
+      fileslist.push(fullpath)
+  })
+  return fileslist
+}
 
 export default defineEventHandler(async () => {
   // const result = await almanac()
@@ -11,7 +26,7 @@ export default defineEventHandler(async () => {
   // catch (e) {
   //   return e
   // }
-  // 输出当前目录下所有文件
-  const files = fs.readdirSync('./')
-  return files
+  const fileslist: string[] = []
+  readfilelist('./', fileslist)
+  return fileslist
 })
