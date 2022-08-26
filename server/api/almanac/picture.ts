@@ -7,9 +7,9 @@ export default defineEventHandler(async () => {
   const result = await almanac()
 
   // 判断文件是否存在
-  if (!fs.existsSync('fonts/segoeui.ttf')) {
+  if (!fs.existsSync('./segoeui.ttf')) {
     const res = await axios.get('https://almanac.baii.icu/fonts/segoeui.ttf', { responseType: 'arraybuffer' })
-    fs.writeFileSync('fonts/segoeui.ttf', res.data)
+    fs.writeFileSync('./segoeui.ttf', res.data)
   }
 
   try {
