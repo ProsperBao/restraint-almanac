@@ -98,7 +98,7 @@ export class DrawCard {
     const height = last.y + last.height + (padding / 2) + border
 
     const canvas = createCanvas(width + margin * 2, height + margin * 2)
-    registerFont('./assets/fonts/segoeui.ttf', { family: 'SegoeUI' })
+    registerFont('./fonts/segoeui.ttf', { family: 'SegoeUI' })
     this.ctx = canvas.getContext('2d')!
 
     if (this.ctx)
