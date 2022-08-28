@@ -17,6 +17,7 @@
     "@unocss/nuxt": "^0.45.4",
     "@vueuse/nuxt": "^9.1.0",
     "axios": "^0.27.2",
+    "canvas": "^2.9.3",
     "dayjs": "^1.11.5",
     "eslint": "^8.21.0",
     "jsdom": "^20.0.0",
