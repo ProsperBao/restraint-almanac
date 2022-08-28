@@ -1,4 +1,4 @@
-import { fabric } from 'fabric'
+import jsdom from 'jsdom'
 import type { AlmanacResult } from './almanac'
 
 export interface DrawCardOptions {
@@ -28,7 +28,8 @@ export type DrawCardHalfDistrict = [DrawCardTagRect[], DrawCardTagRect[]]
 
 export class DrawCard {
   options: Required<DrawCardOptions>
-  ctx: CanvasRenderingContext2D | null = null
+  doc: Document
+  svg: SVGElement | null = null
 
   constructor(options: DrawCardOptions) {
     // 合并配置
@@ -43,6 +44,8 @@ export class DrawCard {
       font: 'SegoeUI',
     }
     this.options = this.merageOptions(defaultOptions, (options || {}))
+
+    this.doc = new jsdom.JSDOM().window.document
   }
 
   merageOptions(defaultOptions: DrawCardOptions, options: DrawCardOptions): Required<DrawCardOptions> {
@@ -90,35 +93,27 @@ export class DrawCard {
     return halfDistrict
   }
 
-  drawByFabric(data: AlmanacResult) {
-    // const { width, margin, startX, border, padding } = this.options
-    // const halfDistrict = this.calcAllPosition(data)
+  draw(data: AlmanacResult) {
+    this.svg = this.createSvgElement('svg')
+    // svg里添加一个边框为红色背景为蓝色的正方形g
+    const rect: SVGRectElement = this.createSvgElement('rect', 'width:300px;height:300px;fill:pink;stroke-width:1;stroke:rgb(0,0,0)')
+    this.svg?.appendChild(rect)
+    return this.svg?.outerHTML
+  }
 
-    const canvas = new fabric.Canvas('canvas')
-    const rect = new fabric.Rect({
-      width: 50,
-      height: 50,
-      left: 100,
-      top: 100,
-      stroke: '#aaf',
-      strokeWidth: 1,
-      fill: '#faa',
-      selectable: false,
-    })
-    canvas.add(rect)
-    const rect1 = new fabric.Rect({
-      width: 50,
-      height: 50,
-      left: 50,
-      top: 50,
-      stroke: '#faa',
-      strokeWidth: 1,
-      fill: '#aaf',
-      selectable: false,
-    })
-    canvas.add(rect)
-    canvas.add(rect1)
-    return canvas.toSVG()
+  /**
+   * 创建SVG元素
+   */
+  createSvgElement<T extends keyof SVGElementTagNameMap>(element: T, attributes: Record<string, string> | string = '') {
+    const ele = this.doc.createElementNS<T>('http://www.w3.org/2000/svg', element)
+    if (typeof attributes === 'string') {
+      ele.setAttribute('style', attributes)
+    }
+    else {
+      for (const key in attributes)
+        ele.setAttribute(key, attributes[key])
+    }
+    return ele
   }
 
   // draw(data: AlmanacResult) {

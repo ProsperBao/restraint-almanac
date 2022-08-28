@@ -1,11 +1,12 @@
 import almanac from '~~/utils/almanac'
-// import { DrawCard } from '~~/utils/draw'
+import { DrawCard } from '~~/utils/draw'
 
 export default defineEventHandler(async () => {
   const result = await almanac()
 
   try {
-    return result
+    const drawCard = new DrawCard({})
+    return drawCard.draw(result)
   }
   catch (e) {
     return e
