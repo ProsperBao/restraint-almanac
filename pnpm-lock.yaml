@@ -9,7 +9,6 @@ specifiers:
   '@unocss/nuxt': ^0.45.4
   '@vueuse/nuxt': ^9.1.0
   axios: ^0.27.2
-  canvas: ^2.9.3
   dayjs: ^1.11.5
   eslint: ^8.21.0
   jsdom: ^20.0.0
@@ -26,10 +25,9 @@ devDependencies:
   '@unocss/nuxt': registry.npmmirror.com/@unocss/nuxt/0.45.13
   '@vueuse/nuxt': registry.npmmirror.com/@vueuse/nuxt/9.1.1
   axios: registry.npmmirror.com/axios/0.27.2
-  canvas: registry.npmmirror.com/canvas/2.9.3
   dayjs: registry.npmmirror.com/dayjs/1.11.5
   eslint: registry.npmmirror.com/eslint/8.23.0
-  jsdom: registry.npmmirror.com/jsdom/20.0.0_canvas@2.9.3
+  jsdom: registry.npmmirror.com/jsdom/20.0.0
   nuxt: registry.npmmirror.com/nuxt/3.0.0-rc.7
   pinia: registry.npmmirror.com/pinia/2.0.21_typescript@4.8.2
   typescript: registry.npmmirror.com/typescript/4.8.2
@@ -2862,21 +2860,6 @@ packages:
     version: 1.0.30001383
     dev: true
 
-  registry.npmmirror.com/canvas/2.9.3:
-    resolution: {integrity: sha512-WOUM7ghii5TV2rbhaZkh1youv/vW1/Canev6Yx6BG2W+1S07w8jKZqKkPnbiPpQEDsnJdN8ouDd7OvQEGXDcUw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/canvas/-/canvas-2.9.3.tgz}
-    name: canvas
-    version: 2.9.3
-    engines: {node: '>=6'}
-    requiresBuild: true
-    dependencies:
-      '@mapbox/node-pre-gyp': registry.npmmirror.com/@mapbox/node-pre-gyp/1.0.9
-      nan: registry.npmmirror.com/nan/2.16.0
-      simple-get: registry.npmmirror.com/simple-get/3.1.1
-    transitivePeerDependencies:
-      - encoding
-      - supports-color
-    dev: true
-
   registry.npmmirror.com/chalk/2.4.2:
     resolution: {integrity: sha512-Mti+f9lpJNcwF4tWV8/OrTTtF1gZi+f8FqlyAdouralcFWFQWF2+NgCHShjkCb+IFBLq9buZwE1xckQU4peSuQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/chalk/-/chalk-2.4.2.tgz}
     name: chalk
@@ -3437,15 +3420,6 @@ packages:
     resolution: {integrity: sha512-Nv6ENEzyPQ6AItkGwLE2PGKinZZ9g59vSh2BeH6NqPu0OTKZ5ruJsVqh/orbAnqXc9pBbgXAIrc2EyaCj8NpGg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/decimal.js/-/decimal.js-10.4.0.tgz}
     name: decimal.js
     version: 10.4.0
-    dev: true
-
-  registry.npmmirror.com/decompress-response/4.2.1:
-    resolution: {integrity: sha512-jOSne2qbyE+/r8G1VU+G/82LBs2Fs4LAsTiLSHOCOMZQl2OKZ6i8i4IyHemTe+/yIXOtTcRQMzPcgyhoFlqPkw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/decompress-response/-/decompress-response-4.2.1.tgz}
-    name: decompress-response
-    version: 4.2.1
-    engines: {node: '>=8'}
-    dependencies:
-      mimic-response: registry.npmmirror.com/mimic-response/2.1.0
     dev: true
 
   registry.npmmirror.com/deep-is/0.1.4:
@@ -5497,9 +5471,8 @@ packages:
       argparse: registry.npmmirror.com/argparse/2.0.1
     dev: true
 
-  registry.npmmirror.com/jsdom/20.0.0_canvas@2.9.3:
+  registry.npmmirror.com/jsdom/20.0.0:
     resolution: {integrity: sha512-x4a6CKCgx00uCmP+QakBDFXwjAJ69IkkIWHmtmjd3wvXPcdOS44hfX2vqkOQrVrq8l9DhNNADZRXaCEWvgXtVA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/jsdom/-/jsdom-20.0.0.tgz}
-    id: registry.npmmirror.com/jsdom/20.0.0
     name: jsdom
     version: 20.0.0
     engines: {node: '>=14'}
@@ -5512,7 +5485,6 @@ packages:
       abab: registry.npmmirror.com/abab/2.0.6
       acorn: registry.npmmirror.com/acorn/8.8.0
       acorn-globals: registry.npmmirror.com/acorn-globals/6.0.0
-      canvas: registry.npmmirror.com/canvas/2.9.3
       cssom: registry.npmmirror.com/cssom/0.5.0
       cssstyle: registry.npmmirror.com/cssstyle/2.3.0
       data-urls: registry.npmmirror.com/data-urls/3.0.2
@@ -5990,13 +5962,6 @@ packages:
     engines: {node: '>=6'}
     dev: true
 
-  registry.npmmirror.com/mimic-response/2.1.0:
-    resolution: {integrity: sha512-wXqjST+SLt7R009ySCglWBCFpjUygmCIfD790/kVbiGmUgfYGuB14PiTd5DwVxSV4NcYHjzMkoj5LjQZwTQLEA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/mimic-response/-/mimic-response-2.1.0.tgz}
-    name: mimic-response
-    version: 2.1.0
-    engines: {node: '>=8'}
-    dev: true
-
   registry.npmmirror.com/min-indent/1.0.1:
     resolution: {integrity: sha512-I9jwMn07Sy/IwOj3zVkVik2JTvgpaykDZEigL6Rx6N9LbMywwUSMtxET+7lVoDLLd3O3IXwJwvuuns8UB/HeAg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/min-indent/-/min-indent-1.0.1.tgz}
     name: min-indent
@@ -6135,12 +6100,6 @@ packages:
     resolution: {integrity: sha512-nnbWWOkoWyUsTjKrhgD0dcz22mdkSnpYqbEjIm2nhwhuxlSkpywJmBo8h0ZqJdkp73mb90SssHkN4rsRaBAfAA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/mute-stream/-/mute-stream-0.0.8.tgz}
     name: mute-stream
     version: 0.0.8
-    dev: true
-
-  registry.npmmirror.com/nan/2.16.0:
-    resolution: {integrity: sha512-UdAqHyFngu7TfQKsCBgAA6pWDkT8MAO7d0jyOecVhN5354xbLqdn8mV9Tat9gepAupm0bt2DbeaSC8vS52MuFA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/nan/-/nan-2.16.0.tgz}
-    name: nan
-    version: 2.16.0
     dev: true
 
   registry.npmmirror.com/nanoid/3.3.4:
@@ -7843,22 +7802,6 @@ packages:
     resolution: {integrity: sha512-wnD2ZE+l+SPC/uoS0vXeE9L1+0wuaMqKlfz9AMUo38JsyLSBWSFcHR1Rri62LZc12vLr1gb3jl7iwQhgwpAbGQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/signal-exit/-/signal-exit-3.0.7.tgz}
     name: signal-exit
     version: 3.0.7
-    dev: true
-
-  registry.npmmirror.com/simple-concat/1.0.1:
-    resolution: {integrity: sha512-cSFtAPtRhljv69IK0hTVZQ+OfE9nePi/rtJmw5UjHeVyVroEqJXP1sFztKUy1qU+xvz3u/sfYJLa947b7nAN2Q==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/simple-concat/-/simple-concat-1.0.1.tgz}
-    name: simple-concat
-    version: 1.0.1
-    dev: true
-
-  registry.npmmirror.com/simple-get/3.1.1:
-    resolution: {integrity: sha512-CQ5LTKGfCpvE1K0n2us+kuMPbk/q0EKl82s4aheV9oXjFEz6W/Y7oQFVJuU6QG77hRT4Ghb5RURteF5vnWjupA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/simple-get/-/simple-get-3.1.1.tgz}
-    name: simple-get
-    version: 3.1.1
-    dependencies:
-      decompress-response: registry.npmmirror.com/decompress-response/4.2.1
-      once: registry.npmmirror.com/once/1.4.0
-      simple-concat: registry.npmmirror.com/simple-concat/1.0.1
     dev: true
 
   registry.npmmirror.com/sirv/2.0.2:
