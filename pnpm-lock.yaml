@@ -6,7 +6,6 @@ specifiers:
   '@iconify-json/twemoji': ^1.1.5
   '@nuxtjs/color-mode': ^3.1.4
   '@pinia/nuxt': ^0.4.1
-  '@types/lodash': ^4.14.184
   '@unocss/nuxt': ^0.45.4
   '@vueuse/nuxt': ^9.1.0
   axios: ^0.27.2
@@ -14,14 +13,9 @@ specifiers:
   dayjs: ^1.11.5
   eslint: ^8.21.0
   jsdom: ^20.0.0
-  lodash: ^4.17.21
   nuxt: ^3.0.0-rc.6
   pinia: ^2.0.17
   typescript: ^4.7.4
-
-dependencies:
-  '@types/lodash': 4.14.184
-  lodash: 4.17.21
 
 devDependencies:
   '@antfu/eslint-config': registry.npmmirror.com/@antfu/eslint-config/0.25.2_yqf6kl63nyoq5megxukfnom5rm
@@ -59,10 +53,6 @@ packages:
     requiresBuild: true
     dev: true
     optional: true
-
-  /@types/lodash/4.14.184:
-    resolution: {integrity: sha512-RoZphVtHbxPZizt4IcILciSWiC6dcn+eZ8oX9IWEYfDMcocdd42f7NPI6fQj+6zI8y4E0L7gu2pcZKLGTRaV9Q==}
-    dev: false
 
   /esbuild-android-64/0.14.54:
     resolution: {integrity: sha512-Tz2++Aqqz0rJ7kYBfz+iqyE3QMycD4vk7LBRyWaAVFgFtQ/O8EJOnVmTOiDWYZ/uYzB4kvP+bqejYdVKzE5lAQ==}
@@ -438,6 +428,7 @@ packages:
 
   /lodash/4.17.21:
     resolution: {integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==}
+    dev: true
 
   /source-map/0.6.1:
     resolution: {integrity: sha512-UjgapumWlbMhkBgzT7Ykc5YXUT46F0iKu8SGXq0bcwP5dz/h0Plj6enJqjz1Zbq2l5WaqYnrVbwWOWMyF3F47g==}
