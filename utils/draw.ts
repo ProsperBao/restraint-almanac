@@ -1,4 +1,5 @@
 import jsdom from 'jsdom'
+import { omit } from 'lodash'
 import type { AlmanacResult } from './almanac'
 
 export interface DrawCardOptions {
@@ -11,6 +12,7 @@ export interface DrawCardOptions {
   margin?: number
   border?: number
   font?: string
+  radius?: number
 }
 
 export interface DrawCardPosition {
@@ -22,6 +24,7 @@ export interface DrawCardTagRect extends DrawCardPosition {
   width: number
   height: number
   content: string
+  length: number
 }
 
 export type DrawCardHalfDistrict = [DrawCardTagRect[], DrawCardTagRect[]]
@@ -30,18 +33,19 @@ export class DrawCard {
   options: Required<DrawCardOptions>
   doc: Document
   svg: SVGElement | null = null
+  defs: SVGElement | null = null
 
   constructor(options: DrawCardOptions) {
     // 合并配置
     const defaultOptions: DrawCardOptions = {
       width: 400,
-      fontSize: 15,
-      fontPadding: 2,
-      startX: 58,
+      fontSize: 16,
+      startX: 68,
       padding: 15,
       margin: 8,
       border: 1,
-      font: 'SegoeUI',
+      fontPadding: 8,
+      radius: 4,
     }
     this.options = this.merageOptions(defaultOptions, (options || {}))
 
@@ -56,34 +60,34 @@ export class DrawCard {
   }
 
   calcAllPosition(data: AlmanacResult): DrawCardHalfDistrict {
-    const { width, startX, startY, fontSize, padding, border, fontPadding } = this.options
+    const { width, startX, startY, fontSize, padding, fontPadding } = this.options
     const halfDistrict: DrawCardHalfDistrict = [[], []]
 
-    let [countWith, countHeight] = [startX + padding, startY]
+    let [countWith, countHeight] = [startX, startY]
     for (let i = 0; i < data.length; i++) {
       if (i === 1) {
-        countWith = startX + padding
-        countHeight += padding * 3.5
+        countWith = startX
+        countHeight += padding * 6
       }
       data[i].list.forEach((item) => {
-        // 计算当前矩形的位置
-        const rectWidth = `${item.emoji}${item.name}`.length * fontSize + (padding / 2)
-        const rectHeight = fontSize + (padding / 2) + fontPadding
+        const text = `${item.emoji} ${item.name}`
+        const textLength = this.calcEmojiTextLength(text)
 
-        // 宽度是否超出剩下宽度
-        // 矩形宽度 > canvas宽度 - 累计宽度 - 右边空白 - 右边边框
-        if (rectWidth > width - countWith - padding - border) {
-          countWith = startX + padding
-          countHeight += rectHeight + (padding / 2)
+        const rectWidth = textLength + fontPadding * 2
+        const rectHeight = fontSize + fontPadding * 1.5
+
+        if (rectWidth > width - countWith - padding) {
+          countWith = startX
+          countHeight += rectHeight + padding
         }
 
-        // 保存矩形的位置
         const rect: DrawCardTagRect = {
           x: countWith,
           y: countHeight,
           width: rectWidth,
           height: rectHeight,
-          content: `${item.emoji} ${item.name}`,
+          content: text,
+          length: textLength,
         }
         halfDistrict[i].push(rect)
 
@@ -94,17 +98,31 @@ export class DrawCard {
   }
 
   draw(data: AlmanacResult) {
-    this.svg = this.createSvgElement('svg')
-    // svg里添加一个边框为红色背景为蓝色的正方形g
-    const rect: SVGRectElement = this.createSvgElement('rect', 'width:300px;height:300px;fill:pink;stroke-width:1;stroke:rgb(0,0,0)')
-    this.svg?.appendChild(rect)
+    const { width, margin, padding } = this.options
+    const halfDistrict = this.calcAllPosition(data)
+    const last = halfDistrict[1][halfDistrict[1].length - 1]
+    const height = last.y + last.height + (padding / 2)
+
+    const svgWidth = width + margin * 2
+    const svgHeight = height + margin * 2
+    this.svg = this.createSvgElement('svg', { width: svgWidth, height: svgHeight })
+    this.createBorderRect({
+      x: margin,
+      y: margin,
+      width,
+      height,
+    })
+
+    for (let i = 0; i < halfDistrict.length; i++)
+      halfDistrict[i].forEach(item => this.createTextRect(item))
+
     return this.svg?.outerHTML
   }
 
   /**
    * 创建SVG元素
    */
-  createSvgElement<T extends keyof SVGElementTagNameMap>(element: T, attributes: Record<string, string> | string = '') {
+  createSvgElement<T extends keyof SVGElementTagNameMap>(element: T, attributes: Record<string, string | number> | string = '') {
     const ele = this.doc.createElementNS<T>('http://www.w3.org/2000/svg', element)
     if (element === 'svg') {
       ele.setAttribute('xmlns', 'http://www.w3.org/2000/svg')
@@ -115,9 +133,57 @@ export class DrawCard {
     }
     else {
       for (const key in attributes)
-        ele.setAttribute(key, attributes[key])
+        ele.setAttribute(key, `${attributes[key]}`)
     }
     return ele
+  }
+
+  createBorderRect({ x, y, height, width }: Omit<DrawCardTagRect, 'length' | 'content'>, g: SVGGElement | null = null) {
+    const { radius } = this.options
+    const target = g || this.svg
+    target?.appendChild(this.createSvgElement('rect', {
+      'fill': '#fff',
+      'stroke': '#e5e7eb',
+      'rx': radius,
+      'ry': radius,
+      x,
+      y,
+      width,
+      height,
+      'stroke-width': 1,
+    }))
+  }
+
+  /**
+   * 包含文字的圆角矩形
+   */
+  createTextRect({ x, y, height, width, content, length }: DrawCardTagRect) {
+    const { fontSize } = this.options
+    const g = this.createSvgElement('g')
+    this.createBorderRect({ x, y, height, width }, g)
+
+    const text = this.createSvgElement('text', {
+      'fill': '#000',
+      'fontSize': fontSize,
+      'x': x + (width / 2) - length / 2,
+      'y': y + height - (fontSize / 2),
+      'baseline-shift': 'baseline',
+    })
+    text.textContent = content
+    g.appendChild(text)
+    this.svg?.appendChild(g)
+  }
+
+  /**
+   * 计算包含 emoji 的文本长度
+   */
+  calcEmojiTextLength(text: string) {
+    const { fontSize } = this.options
+    const [emoji, chinese] = text.split(' ')
+    if (chinese)
+      return (chinese.length * fontSize) + (fontSize * 0.625) + (emoji.length * (fontSize / 2))
+    else
+      return 0
   }
 
   // draw(data: AlmanacResult) {

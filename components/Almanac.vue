@@ -3,6 +3,7 @@ const { data } = await useFetch('/api/almanac')
 </script>
 
 <template>
+  <img src="http://localhost:3000/api/almanac/picture" absolute left="50%" transform translate="x--50%" opacity-70>
   <div v-if="isCard" m-auto inline-block text-left w-100 border border-rounded shadow>
     <div v-for="(item, idx) in data" :key="item.title" flex items-center :class="{ 'border-b': idx === 0 }">
       <div p-4 text-xl>
