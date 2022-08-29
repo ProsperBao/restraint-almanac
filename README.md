@@ -34,5 +34,16 @@
 
 ![https://almanac.baii.icu](https://almanac.baii.icu/api/almanac/picture)
 
+### 配合食用
+
+![配合食用](https://almanac.baii.icu/1.jpg)
+
+可以配合 IOS 自动化，每天发送一条敷衍女友的减肥贴心小贴士，还有每天一句减肥鼓励。
+<br/>
+图中使用到的接口
+
+```
+https://almanac.baii.icu/api/almanac/str
+```
 
 ### 关键词不是很多，随缘更新
