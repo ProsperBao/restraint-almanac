@@ -8,7 +8,7 @@ export default defineEventHandler(async (ctx) => {
 
   try {
     const drawCard = new DrawCard({})
-    return drawCard.drawByFabric(result)
+    return drawCard.draw(result)
   }
   catch (e) {
     return e
