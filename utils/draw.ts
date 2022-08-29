@@ -106,6 +106,10 @@ export class DrawCard {
    */
   createSvgElement<T extends keyof SVGElementTagNameMap>(element: T, attributes: Record<string, string> | string = '') {
     const ele = this.doc.createElementNS<T>('http://www.w3.org/2000/svg', element)
+    if (element === 'svg') {
+      ele.setAttribute('xmlns', 'http://www.w3.org/2000/svg')
+      ele.setAttribute('xmlns:xlink', 'http://www.w3.org/1999/xlink')
+    }
     if (typeof attributes === 'string') {
       ele.setAttribute('style', attributes)
     }
