@@ -147,6 +147,9 @@ export class DrawCard {
       ele.setAttribute('xmlns', 'http://www.w3.org/2000/svg')
       ele.setAttribute('xmlns:xlink', 'http://www.w3.org/1999/xlink')
     }
+    if (element === 'a')
+      ele.setAttribute('xlink:href', 'https://github.com/FuBaooo/restraint-almanac')
+
     if (typeof attributes === 'string') {
       ele.setAttribute('style', attributes)
     }
