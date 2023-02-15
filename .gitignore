@@ -4,6 +4,7 @@ dist
 .output
 .nuxt
 .env
+.history
 
 # Local Netlify folder
 .netlify

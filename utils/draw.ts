@@ -1,5 +1,6 @@
 import jsdom from 'jsdom'
 import type { AlmanacResult } from './almanac'
+import { SimpleDom } from './simpleDom'
 
 export interface DrawCardOptions {
   width?: number
@@ -27,17 +28,17 @@ export interface DrawCardTagRect extends DrawCardPosition {
 }
 
 export type DrawCardHalfDistrict = [DrawCardTagRect[], DrawCardTagRect[]]
+export type DrawCardSvg = SimpleDom | null
 
 export class DrawCard {
   options: Required<DrawCardOptions>
   doc: Document
-  svg: SVGElement | null = null
-  defs: SVGElement | null = null
+  svg: DrawCardSvg = null
 
   constructor(options: DrawCardOptions) {
     // 合并配置
     const defaultOptions: DrawCardOptions = {
-      width: 400,
+      width: 460,
       fontSize: 16,
       startX: 68,
       padding: 15,
@@ -107,7 +108,8 @@ export class DrawCard {
 
     const svgWidth = width + margin * 2
     const svgHeight = height + margin * 2
-    this.svg = this.createSvgElement('svg', { width: svgWidth, height: svgHeight })
+    // this.svg = this.createSvgElement('svg', { width: svgWidth, height: svgHeight })
+    this.svg = SimpleDom.createSvg({ width: svgWidth, height: svgHeight })
     this.createBorderRect({
       x: margin,
       y: margin,
@@ -135,38 +137,16 @@ export class DrawCard {
 
     this.createLine(startX, margin, startX, height + margin)
 
-    return this.svg?.outerHTML
-  }
-
-  /**
-   * create svg elements
-   */
-  createSvgElement<T extends keyof SVGElementTagNameMap>(element: T, attributes: Record<string, string | number> | string = '') {
-    const ele = this.doc.createElementNS<T>('http://www.w3.org/2000/svg', element)
-    if (element === 'svg') {
-      ele.setAttribute('xmlns', 'http://www.w3.org/2000/svg')
-      ele.setAttribute('xmlns:xlink', 'http://www.w3.org/1999/xlink')
-    }
-    if (element === 'a')
-      ele.setAttribute('xlink:href', 'https://github.com/FuBaooo/restraint-almanac')
-
-    if (typeof attributes === 'string') {
-      ele.setAttribute('style', attributes)
-    }
-    else {
-      for (const key in attributes)
-        ele.setAttribute(key, `${attributes[key]}`)
-    }
-    return ele
+    return this.svg?.toString()
   }
 
   /**
    * create rounded rectangular
    */
-  createBorderRect({ x, y, height, width }: Omit<DrawCardTagRect, 'length' | 'content'>, g: SVGGElement | null = null) {
+  createBorderRect({ x, y, height, width }: Omit<DrawCardTagRect, 'length' | 'content'>, g: DrawCardSvg = null) {
     const { radius } = this.options
     const target = g || this.svg
-    target?.appendChild(this.createSvgElement('rect', {
+    target?.appendChild(new SimpleDom('rect', {
       fill: '#ffffff',
       stroke: '#e5e7eb',
       rx: radius,
@@ -183,7 +163,7 @@ export class DrawCard {
    */
   createTextRect({ x, y, height, width, content, length }: DrawCardTagRect) {
     const { fontSize } = this.options
-    const g = this.createSvgElement('g')
+    const g = new SimpleDom('g')
     this.createBorderRect({ x, y, height, width }, g)
 
     this.createText(
@@ -200,7 +180,7 @@ export class DrawCard {
    * create a line
    */
   createLine(x1: number, y1: number, x2: number, y2: number) {
-    const line = this.createSvgElement('line', {
+    const line = new SimpleDom('line', {
       x1,
       y1,
       x2,
@@ -214,15 +194,15 @@ export class DrawCard {
   /**
    * create text
    */
-  createText(x: number, y: number, fontSize: number, content: string, g: SVGGElement | null = null) {
-    const text = this.createSvgElement('text', {
+  createText(x: number, y: number, fontSize: number, content: string, g: DrawCardSvg = null) {
+    const text = new SimpleDom('text', {
       'fill': '#000',
       'font-size': fontSize,
       'x': x,
       'y': y,
       'baseline-shift': 'baseline',
     })
-    text.textContent = content
+    text.content = content
     const target = g || this.svg
     target?.appendChild(text)
   }
