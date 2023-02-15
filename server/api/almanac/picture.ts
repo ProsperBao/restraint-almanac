@@ -5,7 +5,7 @@ import { DrawCard } from '~~/utils/draw'
 export default defineEventHandler(async (ctx) => {
   const query: Partial<DrawCardOptions & { time: string }> = getQuery(ctx)
 
-  const result = await almanac(query.time ? new Date(query.time) : undefined)
+  const result = await almanac(new Date(query.time || ''))
   ctx.res.setHeader('Content-Type', 'image/svg+xml')
 
   try {

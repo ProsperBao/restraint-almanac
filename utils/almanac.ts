@@ -10,7 +10,7 @@ export interface AlmanacItem {
 }
 export type AlmanacResult = AlmanacItem[]
 
-export default async (time = new Date()) => {
+export default async (time: Date) => {
   const date = dayjs(time).format('YYYYMMDD')
   const url = `http://tools.2345.com/frame/api/GetLunarInfo?date=${date}`
   const { data } = await axios.get(url)
