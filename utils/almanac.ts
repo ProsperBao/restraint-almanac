@@ -10,8 +10,8 @@ export interface AlmanacItem {
 }
 export type AlmanacResult = AlmanacItem[]
 
-export default async () => {
-  const date = dayjs(new Date()).format('YYYYMMDD')
+export default async (time = new Date()) => {
+  const date = dayjs(time).format('YYYYMMDD')
   const url = `http://tools.2345.com/frame/api/GetLunarInfo?date=${date}`
   const { data } = await axios.get(url)
   const yi = match(data.html.yi).sort((a, b) => b.name.length - a.name.length).reverse()

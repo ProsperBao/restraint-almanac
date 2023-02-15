@@ -35,7 +35,7 @@ export class DrawCard {
   doc: Document
   svg: DrawCardSvg = null
 
-  constructor(options: DrawCardOptions) {
+  constructor(options: Partial<DrawCardOptions>) {
     // 合并配置
     const defaultOptions: DrawCardOptions = {
       width: 460,
@@ -56,6 +56,7 @@ export class DrawCard {
     const use = { ...defaultOptions, ...options } as Required<DrawCardOptions>
     use.startX = use.startX + use.margin
     use.startY = use.padding + use.margin
+    use.width = (options.width || 0) < defaultOptions!.width! ? defaultOptions.width! : options.width!
     return use
   }
 
@@ -108,7 +109,6 @@ export class DrawCard {
 
     const svgWidth = width + margin * 2
     const svgHeight = height + margin * 2
-    // this.svg = this.createSvgElement('svg', { width: svgWidth, height: svgHeight })
     this.svg = SimpleDom.createSvg({ width: svgWidth, height: svgHeight })
     this.createBorderRect({
       x: margin,
