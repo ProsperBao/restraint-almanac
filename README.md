@@ -46,19 +46,4 @@
 https://almanac.baii.icu/api/almanac/str
 ```
 
-### 部署 netlify
-
-由于使用了 jsdom 库(后续计划直接用字符串生成svg), jsdom 库里又用到了 canvas 这个库。
-<br/>
-canvas 这个库在 netlify 上由于缺少环境变量所以需要配置
-
-```
-Site Setting -> Build & deploy -> Environment
-```
-
-```
-key: LD_LIBRARY_PATH
-value: /var/task/node_modules/canvas/build/Release
-```
-
 ### 关键词不是很多，随缘更新
