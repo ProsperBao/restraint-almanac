@@ -1,27 +1,27 @@
 {
   "private": true,
-  "packageManager": "pnpm@7.5.0",
+  "packageManager": "pnpm@7.9.0",
   "scripts": {
     "build": "nuxi build",
     "dev": "nuxi dev",
     "start": "node .output/server/index.mjs",
     "lint": "eslint .",
-    "postinstall": "nuxi prepare"
+    "postinstall": "nuxi prepare",
+    "generate": "nuxi generate"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^0.25.2",
-    "@iconify-json/carbon": "^1.1.7",
-    "@iconify-json/twemoji": "^1.1.5",
-    "@nuxtjs/color-mode": "^3.1.4",
-    "@pinia/nuxt": "^0.4.1",
-    "@unocss/nuxt": "^0.45.4",
-    "@vueuse/nuxt": "^9.1.0",
+    "@antfu/eslint-config": "^0.35.1",
+    "@iconify-json/carbon": "^1.1.14",
+    "@iconify-json/twemoji": "^1.1.10",
+    "@nuxtjs/color-mode": "^3.2.0",
+    "@pinia/nuxt": "^0.4.6",
+    "@unocss/nuxt": "^0.49.4",
+    "@vueuse/nuxt": "^9.12.0",
     "axios": "^0.27.2",
     "dayjs": "^1.11.5",
-    "eslint": "^8.21.0",
-    "jsdom": "^20.0.0",
-    "nuxt": "^3.0.0-rc.6",
-    "pinia": "^2.0.17",
-    "typescript": "^4.7.4"
+    "eslint": "^8.33.0",
+    "nuxt": "^3.1.2",
+    "pinia": "^2.0.30",
+    "typescript": "^4.9.5"
   }
 }

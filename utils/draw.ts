@@ -1,4 +1,3 @@
-import jsdom from 'jsdom'
 import type { AlmanacResult } from './almanac'
 import { SimpleDom } from './simpleDom'
 
@@ -32,7 +31,6 @@ export type DrawCardSvg = SimpleDom | null
 
 export class DrawCard {
   options: Required<DrawCardOptions>
-  doc: Document
   svg: DrawCardSvg = null
 
   constructor(options: Partial<DrawCardOptions>) {
@@ -48,8 +46,6 @@ export class DrawCard {
       radius: 4,
     }
     this.options = this.merageOptions(defaultOptions, (options || {}))
-
-    this.doc = new jsdom.JSDOM().window.document
   }
 
   merageOptions(defaultOptions: DrawCardOptions, options: DrawCardOptions): Required<DrawCardOptions> {
