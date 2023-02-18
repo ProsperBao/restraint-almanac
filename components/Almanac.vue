@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import dayjs from 'dayjs'
+import { isCard } from '~~/composables/card'
 import type { AlmanacResult } from '~~/utils/almanac'
 
 const currentDate = ref(new Date())
@@ -11,7 +12,7 @@ watch(() => currentDate.value, () => refresh())
 <template>
   <section relative>
     <CustomDate v-model="currentDate" />
-    <div v-if="isCard" m-auto inline-block text-left w-100 border border-rounded shadow>
+    <div v-if="isCard" m-auto inline-block text-left w-100 class="custom-card">
       <div v-for="(item, idx) in data" :key="item.title" flex items-center :class="{ 'border-b': idx === 0 }">
         <div p-4 text-xl>
           {{ item.title }}
