@@ -1,12 +1,5 @@
 <script setup>
-useHead({
-  title: '食材黄历 - 自律人的日历',
-  link: [
-    {
-      rel: 'icon', type: 'image/svg+xml', href: '/icon.svg',
-    },
-  ],
-})
+useHead({ title: '食材黄历 - 自律人的日历' })
 </script>
 
 <template>
