@@ -1,5 +1,6 @@
 import axios from 'axios'
 import dayjs from 'dayjs'
+import { load } from 'cheerio'
 import type { Keyword } from '~~/data/match'
 import { match } from '~~/data/match'
 
@@ -10,12 +11,22 @@ export interface AlmanacItem {
 }
 export type AlmanacResult = AlmanacItem[]
 
-export default async (time: Date) => {
+export default async (time?: string) => {
   const date = dayjs(time).format('YYYYMMDD')
-  const url = `http://tools.2345.com/frame/api/GetLunarInfo?date=${date}`
+  const url = `http://m.wannianli3.com/${date}huangdaojiri`
   const { data } = await axios.get(url)
-  const yi = match(data.html.yi).sort((a, b) => b.name.length - a.name.length).reverse()
-  const ji = match(data.html.ji).sort((a, b) => b.name.length - a.name.length).reverse()
+  const $ = load(data)
+
+  const yiStr = $('div.main > div:nth-child(3) > div > table > tbody > tr:nth-child(3) > td')
+    .text()
+    .replace(/\s+/g, ' ')
+
+  const jiStr = $('div.main > div:nth-child(3) > div > table > tbody > tr:nth-child(4) > td')
+    .text()
+    .replace(/\s+/g, ' ')
+
+  const yi = match(yiStr).sort((a, b) => b.name.length - a.name.length).reverse()
+  const ji = match(jiStr).sort((a, b) => b.name.length - a.name.length).reverse()
 
   const result = yi.filter(item => !ji.some(jiItem => jiItem.name === item.name))
 
@@ -23,12 +34,12 @@ export default async (time: Date) => {
     {
       title: '宜',
       list: result,
-      str: data.html.yi,
+      str: yiStr,
     },
     {
       title: '忌',
       list: ji,
-      str: data.html.ji,
+      str: jiStr,
     },
   ]
 }

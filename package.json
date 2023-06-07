@@ -20,6 +20,7 @@
     "@vueuse/components": "^9.13.0",
     "@vueuse/nuxt": "^9.13.0",
     "axios": "^0.27.2",
+    "cheerio": "1.0.0-rc.12",
     "dayjs": "^1.11.5",
     "eslint": "^8.34.0",
     "nuxt": "^3.2.2",
