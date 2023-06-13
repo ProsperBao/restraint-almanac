@@ -7,7 +7,7 @@ import { match } from '~~/data/match'
 export interface AlmanacItem {
   title: string
   list: Keyword[]
-  str: string[]
+  str: string
 }
 export type AlmanacResult = AlmanacItem[]
 
@@ -41,5 +41,5 @@ export default async (time?: string) => {
       list: ji,
       str: jiStr,
     },
-  ]
+  ] as AlmanacResult
 }

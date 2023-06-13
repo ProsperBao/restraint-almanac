@@ -1,49 +1,53 @@
 <p align="center">
-  <img src="https://almanac.baii.icu/api/almanac/picture"/>
+  <img src="https://almanac.baii.icu/api/almanac/translate?lang=en"/>
 </p>
 
 <h2 align="center">
   <a href="https://github.com/FuBaooo/restraint-almanac">
-    自律人黄历
+    Restraint Almanac
   </a>
 </h2><br>
 
-### 干嘛的
-和隔离食用手册类似，但是推荐食材是根据黄历来的，你冰箱里不一定有，你也不一定吃的到，纯属娱乐。
+English | [简体中文](./README-zh-CN.md) | [日本語](./README-ja-JP.md)
 
-### 有啥逻辑吗？
-根据当天黄历实时变动，然后根据关键字从数据中匹配。<br>
-每个食材都是每个黄历关键词能发散联想出来的。<br>
-例如: 
+### What is this for?
+Similar to an isolation recipe book, the recommended ingredients are based on the Chinese almanac, which may not be available in your refrigerator or accessible to you. It is purely for entertainment purposes.
 
-- 祭祀 -> 祭祀代表的食材
-- 嫁娶 -> 婚礼食材 + 婚礼行为 (拼酒)
-- 出行 -> 动物的迁徙习性
+### Is there any logic?
+According to the real-time changes in the Chinese almanac, the system matches keywords from the data.<br>
 
-等等
+Each ingredient is associated with the keywords from the Chinese almanac that can be associated with it. For example:
 
-### 我也想放到我的 profile 里
+Sacrifice -> ingredients represented by sacrifice
+Marriage -> wedding ingredients + wedding customs
+Travel -> animal migration habits
+
+and so on.
+
+### I also want to put it in my profile.
 
 ```
-<img src="https://almanac.baii.icu/api/almanac/picture" />
-```
-或者
-```
-![https://almanac.baii.icu](https://almanac.baii.icu/api/almanac/picture)
+<img src="https://almanac.baii.icu/api/almanac/translate?lang=en" />
 ```
 
-![https://almanac.baii.icu](https://almanac.baii.icu/api/almanac/picture)
+or
 
-### 配合食用
+```
+![https://almanac.baii.icu](https://almanac.baii.icu/api/almanac/translate?lang=en)
+```
 
-<img src="https://almanac.baii.icu/1.jpg" alt="配合食用" style="width: 300px"/>
+![https://almanac.baii.icu](https://almanac.baii.icu/api/almanac/translate?lang=en)
 
-可以配合 IOS 自动化，每天发送一条敷衍女友的减肥贴心小贴士，还有每天一句减肥鼓励。
+### Best served with.
+
+<img src="https://almanac.baii.icu/1.jpg" alt="best served with" style="width: 300px"/>
+
+It can be used with IOS automation to send a perfunctory weight-loss tip to your girlfriend every day, as well as daily weight-loss encouragement.
 <br/>
-图中使用到的接口
+The interface used in the picture.
 
 ```
 https://almanac.baii.icu/api/almanac/str
 ```
 
-### 关键词不是很多，随缘更新
+### There are not many keywords, and updates will be made as appropriate.

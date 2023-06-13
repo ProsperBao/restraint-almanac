@@ -1,5 +1,6 @@
 import type { AlmanacResult } from './almanac'
 import { SimpleDom } from './simpleDom'
+import { calcTextWidth } from './calcTextWidth'
 
 export interface DrawCardOptions {
   width?: number
@@ -123,12 +124,12 @@ export class DrawCard {
 
       const districtLast = halfDistrict[i][halfDistrict[i].length - 1]
       const districtFirst = halfDistrict[i][0]
-      this.createText(
-        startX / 2 - (fontSize / 2),
-        districtFirst.y + (((districtLast.y + districtLast.height + padding) - districtFirst.y) / 2),
-        fontSize * 1.25,
-        data[i].title,
-      )
+      this.createText({
+        x: (startX / 2) - ((calcTextWidth(data[i].title) * fontSize * 1.25) / 2) + (margin / 2),
+        y: districtFirst.y + (((districtLast.y + districtLast.height + padding) - districtFirst.y) / 2),
+        fontSize: fontSize * 1.25,
+        content: data[i].title,
+      })
     }
 
     this.createLine(startX, margin, startX, height + margin)
@@ -162,13 +163,12 @@ export class DrawCard {
     const g = new SimpleDom('g')
     this.createBorderRect({ x, y, height, width }, g)
 
-    this.createText(
-      x + (width / 2) - length / 2,
-      y + height - (fontSize / 2),
+    this.createText({
+      x: x + (width / 2) - length / 2,
+      y: y + height - (fontSize / 2),
       fontSize,
       content,
-      g,
-    )
+    }, g)
     this.svg?.appendChild(g)
   }
 
@@ -190,7 +190,12 @@ export class DrawCard {
   /**
    * create text
    */
-  createText(x: number, y: number, fontSize: number, content: string, g: DrawCardSvg = null) {
+  createText({ x, y, fontSize, content }: {
+    x: number
+    y: number
+    fontSize: number
+    content: string
+  }, g: DrawCardSvg = null) {
     const text = new SimpleDom('text', {
       'fill': '#000',
       'font-size': fontSize,
@@ -206,12 +211,9 @@ export class DrawCard {
   /**
    * calculate the text length containing emoji
    */
-  calcEmojiTextLength(text: string) {
+  calcEmojiTextLength(content: string) {
     const { fontSize } = this.options
-    const [emoji, chinese] = text.split(' ')
-    if (chinese)
-      return (chinese.length * fontSize) + (fontSize * 0.625) + (emoji.length * (fontSize / 2))
-    else
-      return 0
+    const [, ...text] = content.split(' ')
+    return (calcTextWidth(text.join(' ')) + 2) * fontSize
   }
 }

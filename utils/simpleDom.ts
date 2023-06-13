@@ -32,7 +32,13 @@ export class SimpleDom {
       'xmlns': 'http://www.w3.org/2000/svg',
       'xmlns:xlink': 'http://www.w3.org/1999/xlink',
     }
-    return new SimpleDom('svg', { ...defaultSvgAttr, ...attr }, content)
+
+    const svg = new SimpleDom('svg', { ...defaultSvgAttr, ...attr }, content)
+    svg.appendChild(SimpleDom.create('style', {}, `text {
+      font-family: Consolas, "Lucida Console", Monaco, "DejaVu Sans Mono", "Bitstream Vera Sans Mono", monospace;
+      font-variant-numeric: tabular-nums;
+    }`))
+    return svg
   }
 
   static createSvgLink(href: string, attr?: SimpleDomAttr, content?: string | SimpleDom[]): SimpleDom {
