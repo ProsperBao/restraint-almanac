@@ -11,7 +11,8 @@ const LANGUAGE_PRESET = {
       fontSize: 16,
       margin: 8,
       // The left text of each language is different in terms of text width, so a starting position needs to be set based on the text.
-      startX: 106,
+      startX: 102,
+      width: 540,
     },
   },
   jp: {
@@ -20,6 +21,7 @@ const LANGUAGE_PRESET = {
       fontSize: 16,
       margin: 8,
       startX: 102,
+      width: 540,
     },
   },
 }
@@ -45,8 +47,8 @@ export default defineEventHandler(async (ctx) => {
   ctx.res.setHeader('Content-Type', 'image/svg+xml')
 
   const drawCard = new DrawCard({
-    width: +(query?.width || 0),
     ...(query.lang ? LANGUAGE_PRESET[query.lang]?.params : {}),
+    width: +(query?.width || LANGUAGE_PRESET[query.lang!]?.params.width || 0),
   })
 
   return drawCard.draw(result)

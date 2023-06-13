@@ -11,8 +11,14 @@ export interface AlmanacItem {
 }
 export type AlmanacResult = AlmanacItem[]
 
+const TIME_CATCH: Map<string, AlmanacResult> = new Map()
+
 export default async (time?: string) => {
   const date = dayjs(time).format('YYYYMMDD')
+
+  if (TIME_CATCH.has(date))
+    return TIME_CATCH.get(date)!
+
   const url = `http://m.wannianli3.com/${date}huangdaojiri`
   const { data } = await axios.get(url)
   const $ = load(data)
@@ -28,12 +34,10 @@ export default async (time?: string) => {
   const yi = match(yiStr).sort((a, b) => b.name.length - a.name.length).reverse()
   const ji = match(jiStr).sort((a, b) => b.name.length - a.name.length).reverse()
 
-  const result = yi.filter(item => !ji.some(jiItem => jiItem.name === item.name))
-
-  return [
+  const result: AlmanacResult = [
     {
       title: '宜',
-      list: result,
+      list: yi.filter(item => !ji.some(jiItem => jiItem.name === item.name)),
       str: yiStr,
     },
     {
@@ -41,5 +45,9 @@ export default async (time?: string) => {
       list: ji,
       str: jiStr,
     },
-  ] as AlmanacResult
+  ]
+
+  TIME_CATCH.set(date, result)
+
+  return result
 }
