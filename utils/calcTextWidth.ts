@@ -13,5 +13,5 @@ export function calcTextWidth(str: string): number {
       nonEnglishCount++
   }
 
-  return nonEnglishCount + spaceCount + (englishCount * 0.515)
+  return nonEnglishCount + spaceCount + (englishCount * 0.55)
 }
