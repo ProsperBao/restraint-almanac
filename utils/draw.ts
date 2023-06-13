@@ -13,6 +13,7 @@ export interface DrawCardOptions {
   border?: number
   font?: string
   radius?: number
+  // TODO: dark mode
 }
 
 export interface DrawCardPosition {
