@@ -18,9 +18,9 @@ According to the real-time changes in the Chinese almanac, the system matches ke
 
 Each ingredient is associated with the keywords from the Chinese almanac that can be associated with it. For example:
 
-Sacrifice -> ingredients represented by sacrifice
-Marriage -> wedding ingredients + wedding customs
-Travel -> animal migration habits
+- Sacrifice -> ingredients represented by the sacrifice
+- Marriage -> wedding ingredients + wedding customs
+- Travel -> animal migration habits
 
 and so on.
 
