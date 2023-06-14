@@ -11,7 +11,7 @@ import cache from '../data/cache.json'
   const date = dayjs().format('YYYYMMDD')
   if (CACHE_JSON[date])
     return
-
+  console.log('schedule', date)
   const res: AlmanacResult = await almanac(date)
   CACHE_JSON[date] = [res[0].str, res[1].str]
 
