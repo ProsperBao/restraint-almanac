@@ -3,6 +3,8 @@ on:
   schedule:
     - cron: '0 7 * * *' # 每天早上7点执行
   push:
+    branches:    
+      - main
     paths:
       - '**.json'
 
