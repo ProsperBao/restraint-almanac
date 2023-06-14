@@ -2,6 +2,9 @@ on:
   workflow_dispatch:
   schedule:
     - cron: '0 7 * * *' # 每天早上7点执行
+  push:
+    paths:
+      - '**.json'
 
 name: Schedule Update
 
@@ -24,10 +27,3 @@ jobs:
       
       - name: Run script
         run: pnpm run update
-        
-      - name: Check status and commit changes
-        run: |
-          git config --global user.name "FuBaooo"
-          git config --global user.email "baihe2233@gmail.com"
-          git add .
-          git diff-index --quiet HEAD || git commit -m "chore: update almanac cache"
