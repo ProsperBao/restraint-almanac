@@ -30,6 +30,9 @@ jobs:
       - name: Run script
         run: pnpm run update
         
+        
+      - run: git status
+        
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:
