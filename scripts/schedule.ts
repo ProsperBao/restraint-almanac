@@ -18,5 +18,6 @@ import cache from '../data/cache.json'
   const json = JSON.stringify(CACHE_JSON)
 
   const root = process.cwd()
+  console.log(resolve(root, './data/cache.json'))
   fs.writeFileSync(resolve(root, './data/cache.json'), json)
 })()
