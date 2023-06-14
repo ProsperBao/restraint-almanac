@@ -3,6 +3,7 @@ import dayjs from 'dayjs'
 import { load } from 'cheerio'
 import type { Keyword } from '~~/data/match'
 import { match } from '~~/data/match'
+import cache from '~~/data/cache.json'
 
 export interface AlmanacItem {
   title: string
@@ -12,6 +13,9 @@ export interface AlmanacItem {
 export type AlmanacResult = AlmanacItem[]
 
 const TIME_CATCH: Map<string, AlmanacResult> = new Map()
+
+const CACHE_JSON = <Record<string, AlmanacResult>>cache
+Object.keys(CACHE_JSON).forEach(key => TIME_CATCH.set(key, CACHE_JSON[key]))
 
 export default async (time?: string) => {
   const date = dayjs(time).format('YYYYMMDD')
