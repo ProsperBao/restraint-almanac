@@ -1,3 +1,4 @@
+
 <p align="center">
   <img src="https://almanac.baii.icu/api/almanac/picture?lang=en"/>
 </p>
@@ -8,7 +9,12 @@
   </a>
 </h2><br>
 
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/6ebc1907-60e5-45cb-b816-3094c9161b1f/deploy-status)](https://app.netlify.com/sites/deft-vacherin-a64172/deploys)
+[![Schedule Update](https://github.com/FuBaooo/restraint-almanac/actions/workflows/schedule.yml/badge.svg)](https://github.com/FuBaooo/restraint-almanac/actions/workflows/schedule.yml)
+
 English | [简体中文](./README-zh-CN.md) | [日本語](./README-ja-JP.md)
+
 
 ### What is this for?
 Similar to an isolation recipe book, the recommended ingredients are based on the Chinese almanac, which may not be available in your refrigerator or accessible to you. It is purely for entertainment purposes.
