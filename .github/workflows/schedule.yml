@@ -31,6 +31,8 @@ jobs:
         run: pnpm run update
         
       - run: |
+          git config --global user.email "baihe2233@gmail.com"
+          git config --global user.name "FuBaooo"
           git status
           git add data/cache.json
           git commit -m "chore: update cache file"
