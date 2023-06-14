@@ -14,8 +14,7 @@ export type AlmanacResult = AlmanacItem[]
 
 const TIME_CATCH: Map<string, AlmanacResult> = new Map()
 
-const CACHE_JSON = <Record<string, AlmanacResult>>cache
-Object.keys(CACHE_JSON).forEach(key => TIME_CATCH.set(key, CACHE_JSON[key]))
+const CACHE_JSON = <Record<string, [string, string]>>cache
 
 export default async (time?: string) => {
   const date = dayjs(time).format('YYYYMMDD')
@@ -23,17 +22,26 @@ export default async (time?: string) => {
   if (TIME_CATCH.has(date))
     return TIME_CATCH.get(date)!
 
-  const url = `http://m.wannianli3.com/${date}huangdaojiri`
-  const { data } = await axios.get(url)
-  const $ = load(data)
+  let yiStr: string
+  let jiStr: string
 
-  const yiStr = $('div.main > div:nth-child(3) > div > table > tbody > tr:nth-child(3) > td')
-    .text()
-    .replace(/\s+/g, ' ')
+  if (CACHE_JSON[date]) {
+    yiStr = CACHE_JSON[date][0]
+    jiStr = CACHE_JSON[date][1]
+  }
+  else {
+    const url = `http://m.wannianli3.com/${date}huangdaojiri`
+    const { data } = await axios.get(url)
+    const $ = load(data)
 
-  const jiStr = $('div.main > div:nth-child(3) > div > table > tbody > tr:nth-child(4) > td')
-    .text()
-    .replace(/\s+/g, ' ')
+    yiStr = $('div.main > div:nth-child(3) > div > table > tbody > tr:nth-child(3) > td')
+      .text()
+      .replace(/\s+/g, ' ')
+
+    jiStr = $('div.main > div:nth-child(3) > div > table > tbody > tr:nth-child(4) > td')
+      .text()
+      .replace(/\s+/g, ' ')
+  }
 
   const yi = match(yiStr).sort((a, b) => b.name.length - a.name.length).reverse()
   const ji = match(jiStr).sort((a, b) => b.name.length - a.name.length).reverse()
