@@ -14,7 +14,7 @@ export type AlmanacResult = AlmanacItem[]
 
 const TIME_CATCH: Map<string, AlmanacResult> = new Map()
 
-const CACHE_JSON = <Record<string, [string, string]>>cache
+const CACHE_JSON = <Record<string, string[]>>cache
 
 export default async (time?: string) => {
   const date = dayjs(time).format('YYYYMMDD')
@@ -36,11 +36,11 @@ export default async (time?: string) => {
 
     yiStr = $('div.main > div:nth-child(3) > div > table > tbody > tr:nth-child(3) > td')
       .text()
-      .replace(/\s+/g, ' ')
+      .replace(/\s+/g, ' ').trim()
 
     jiStr = $('div.main > div:nth-child(3) > div > table > tbody > tr:nth-child(4) > td')
       .text()
-      .replace(/\s+/g, ' ')
+      .replace(/\s+/g, ' ').trim()
   }
 
   const yi = match(yiStr).sort((a, b) => b.name.length - a.name.length).reverse()
