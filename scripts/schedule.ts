@@ -5,7 +5,7 @@ import almanac from '../utils/almanac'
 import type { AlmanacResult } from '../utils/almanac'
 import cache from '../data/cache.json'
 
-(async () => {
+await (async () => {
   const CACHE_JSON = cache as Record<string, string[]>
 
   const date = dayjs().format('YYYYMMDD')
@@ -20,4 +20,5 @@ import cache from '../data/cache.json'
   const root = process.cwd()
   console.log(resolve(root, './data/cache.json'))
   fs.writeFileSync(resolve(root, './data/cache.json'), json)
+  console.log(fs.readFileSync(resolve(root, './data/cache.json'), 'utf-8'))
 })()
