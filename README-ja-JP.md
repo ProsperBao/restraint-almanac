@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://almanac.baii.icu/api/almanac/translate?lang=jp"/>
+  <img src="https://almanac.baii.icu/api/almanac/picture?lang=jp"/>
 </p>
 
 <h2 align="center">
@@ -27,16 +27,36 @@
 ### 私も自分のプロフィールに入れたいです。
 
 ```
-<img src="https://almanac.baii.icu/api/almanac/translate?lang=jp" />
+<img src="https://almanac.baii.icu/api/almanac/picture?lang=jp" />
 ```
 
 または
 
 ```
-![https://almanac.baii.icu](https://almanac.baii.icu/api/almanac/translate?lang=jp)
+![https://almanac.baii.icu](https://almanac.baii.icu/api/almanac/picture?lang=jp)
 ```
 
-![https://almanac.baii.icu](https://almanac.baii.icu/api/almanac/translate?lang=jp)
+![https://almanac.baii.icu](https://almanac.baii.icu/api/almanac/picture?lang=jp)
+
+URLのクエリパラメータに対応するパラメータを追加してください。
+
+| パラメータ | 説明 | デフォルト値 | オプションの値 |
+| --- | --- | --- | --- |
+| lang | string | `zh-CN` | `['jp', 'en']` |
+| width | number | 460 | 言語によって異なります [表示](./server/api/almanac/picture.ts) |
+
+調整はお勧めしません：
+
+| パラメータ | 説明 | デフォルト値 | オプションの値 |
+| --- | --- | --- | --- |
+| fontSize | number | 16 | - |
+| padding | number | 15 | - |
+| fontPadding | number | 8 | - |
+| startX | number | 76 | - |
+| startY | number | 23 | - |
+| margin | number | 8 | - |
+| border | number | 1 | - |
+| radius | number | 4 | - |
 
 ### 一緒に食べると最高です。
 

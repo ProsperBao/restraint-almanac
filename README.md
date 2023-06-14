@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://almanac.baii.icu/api/almanac/translate?lang=en"/>
+  <img src="https://almanac.baii.icu/api/almanac/picture?lang=en"/>
 </p>
 
 <h2 align="center">
@@ -27,16 +27,36 @@ and so on.
 ### I also want to put it in my profile.
 
 ```
-<img src="https://almanac.baii.icu/api/almanac/translate?lang=en" />
+<img src="https://almanac.baii.icu/api/almanac/picture?lang=en" />
 ```
 
 or
 
 ```
-![https://almanac.baii.icu](https://almanac.baii.icu/api/almanac/translate?lang=en)
+![https://almanac.baii.icu](https://almanac.baii.icu/api/almanac/picture?lang=en)
 ```
 
-![https://almanac.baii.icu](https://almanac.baii.icu/api/almanac/translate?lang=en)
+![https://almanac.baii.icu](https://almanac.baii.icu/api/almanac/picture?lang=en)
+
+Just add the corresponding parameters in the query parameter of the URL.
+
+| Parameter | Description | Default Value | Optional Values |
+| --- | --- | --- | --- |
+| lang | string | `zh-CN` | `['jp', 'en']` |
+| width | number | 460 | Varies by language [View](./server/api/almanac/picture.ts) |
+
+Not recommended to adjust:
+
+| Parameter | Description | Default Value | Optional Values |
+| --- | --- | --- | --- |
+| fontSize | number | 16 | - |
+| padding | number | 15 | - |
+| fontPadding | number | 8 | - |
+| startX | number | 76 | - |
+| startY | number | 23 | - |
+| margin | number | 8 | - |
+| border | number | 1 | - |
+| radius | number | 4 | - |
 
 ### Best served with.
 

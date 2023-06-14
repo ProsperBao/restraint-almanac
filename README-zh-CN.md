@@ -36,6 +36,26 @@
 
 ![https://almanac.baii.icu](https://almanac.baii.icu/api/almanac/picture)
 
+只需要在 url 的 query 参数中加上相应的参数即可
+
+| 参数 | 说明 | 默认值 | 可选值 |
+| --- | --- | --- | --- |
+|lang | string | `zh-CN` | `['jp', 'en']` |
+|width | number | 460 | 因语言而异 [查看](./server/api/almanac/picture.ts) |
+
+不建议调整:
+
+| 参数 | 说明 | 默认值 | 可选值 |
+| --- | --- | --- | --- |
+|fontSize | number | 16 | - |
+|padding | number | 15 | - |
+|fontPadding | number | 8 | - |
+|startX | number | 76 | - |
+|startY | number | 23 | - |
+|margin | number | 8 | - |
+|border | number | 1 | - |
+|radius | number | 4 | - |
+
 ### 配合食用
 
 <img src="https://almanac.baii.icu/1.jpg" alt="配合食用" style="width: 300px"/>

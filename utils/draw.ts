@@ -11,7 +11,6 @@ export interface DrawCardOptions {
   startY?: number
   margin?: number
   border?: number
-  font?: string
   radius?: number
   // TODO: dark mode
 }
