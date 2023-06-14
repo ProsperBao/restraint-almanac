@@ -5,7 +5,7 @@ import almanac from '../utils/almanac'
 import type { AlmanacResult } from '../utils/almanac'
 import cache from '../data/cache.json'
 
-await (async () => {
+(async () => {
   const CACHE_JSON = cache as Record<string, string[]>
 
   const date = dayjs().format('YYYYMMDD')
