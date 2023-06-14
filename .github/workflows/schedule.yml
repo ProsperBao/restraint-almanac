@@ -1,11 +1,6 @@
 on:
   schedule:
     - cron: '0 7 * * *' # 每天早上7点执行
-  push:
-    branches:    
-      - main
-    paths:
-      - data/**.json
   workflow_dispatch:
 
 name: Schedule Update
@@ -29,3 +24,9 @@ jobs:
       
       - name: Run script
         run: pnpm run update
+        
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: main
