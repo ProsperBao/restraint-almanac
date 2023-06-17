@@ -7,10 +7,10 @@ const date = useVModel(props, 'modelValue', emits)
 
 const formatterKey = ['YEAR', 'MONTH', 'DAY']
 
-const prevDay = () => {
+function prevDay() {
   date.value = dayjs(date.value).subtract(1, 'day').toDate()
 }
-const nextDay = () => {
+function nextDay() {
   date.value = dayjs(date.value).add(1, 'day').toDate()
 }
 </script>

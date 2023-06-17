@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { Keyword } from '~~/data/match'
+
 defineProps<{ keyword: Keyword }>()
 </script>
 

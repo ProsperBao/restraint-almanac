@@ -1,6 +1,6 @@
 on:
   schedule:
-    - cron: '0 7 * * *' # 每天早上7点执行
+    - cron: '0 16 * * *' # 每天早上7点执行
   workflow_dispatch:
 
 name: Schedule Update

@@ -4,7 +4,7 @@ import { DrawCard } from '~~/utils/draw'
 import en from '~~/data/locales/en.json'
 import jp from '~~/data/locales/jp.json'
 
-const LANGUAGE_PRESET = {
+export const LANGUAGE_PRESET = {
   en: {
     lang: en,
     params: {
