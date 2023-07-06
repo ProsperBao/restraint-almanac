@@ -26,6 +26,8 @@ export const LANGUAGE_PRESET = {
   },
 }
 
+let count = 0
+
 export default defineEventHandler(async (ctx) => {
   const query: Partial<DrawCardOptions & { time: string; lang?: 'jp' | 'en' }> = getQuery(ctx)
 
@@ -50,6 +52,10 @@ export default defineEventHandler(async (ctx) => {
     ...(query.lang ? LANGUAGE_PRESET[query.lang]?.params : {}),
     width: +(query?.width || LANGUAGE_PRESET[query.lang!]?.params.width || 0),
   })
+
+  count++
+  // eslint-disable-next-line no-console
+  console.log(count)
 
   return drawCard.draw(result)
 })
