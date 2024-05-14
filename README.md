@@ -4,14 +4,14 @@
 </p>
 
 <h2 align="center">
-  <a href="https://github.com/FuBaooo/restraint-almanac">
+  <a href="https://github.com/ProsperBao/restraint-almanac">
     Restraint Almanac
   </a>
 </h2><br>
 
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/6ebc1907-60e5-45cb-b816-3094c9161b1f/deploy-status)](https://app.netlify.com/sites/deft-vacherin-a64172/deploys)
-[![Schedule Update](https://github.com/FuBaooo/restraint-almanac/actions/workflows/schedule.yml/badge.svg)](https://github.com/FuBaooo/restraint-almanac/actions/workflows/schedule.yml)
+[![Schedule Update](https://github.com/ProsperBao/restraint-almanac/actions/workflows/schedule.yml/badge.svg)](https://github.com/ProsperBao/restraint-almanac/actions/workflows/schedule.yml)
 
 English | [简体中文](./README-zh-CN.md) | [日本語](./README-ja-JP.md)
 
