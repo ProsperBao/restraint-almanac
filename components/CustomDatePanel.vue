@@ -14,29 +14,29 @@ const formatterMap = {
 
 const formatter = computed(() => dayjs(date.value).format(formatterMap[props.mode]))
 
-let currentDatePage = $ref(0)
+const currentDatePage = ref(0)
 const currentLineLimit = { YEAR: 3, MONTH: 4, DAY: 7 }
 const currentDateList = computed(() => {
   const time = dayjs(date.value)
   const mode = props.mode
   if (mode === 'DAY')
-    return Array.from({ length: time.add(currentDatePage, 'month').daysInMonth() }, (_, i) => i + 1)
+    return Array.from({ length: time.add(currentDatePage.value, 'month').daysInMonth() }, (_, i) => i + 1)
 
   if (mode === 'MONTH')
     return Array.from({ length: 12 }, (_, i) => i + 1)
 
   if (mode === 'YEAR') {
-    if (currentDatePage === 0) {
+    if (currentDatePage.value === 0) {
       // 取当前年份的前5年和后5年
       const startYear = time.year() - 5
       const endYear = time.year() + 5
       return Array.from({ length: endYear - startYear + 1 }, (_, i) => startYear + i)
     }
     else {
-      const baseYear = currentDatePage > 0 ? 4 : -4
+      const baseYear = currentDatePage.value > 0 ? 4 : -4
       // 按数量+-10年，取出对应的每一年形成列表
-      const startYear = time.add(currentDatePage * 9 + baseYear, 'year').year()
-      const endYear = time.add((currentDatePage + 1) * 9 + baseYear, 'year').year() - 1
+      const startYear = time.add(currentDatePage.value * 9 + baseYear, 'year').year()
+      const endYear = time.add((currentDatePage.value + 1) * 9 + baseYear, 'year').year() - 1
       return Array.from({ length: endYear - startYear + 1 }, (_, i) => startYear + i)
     }
   }
@@ -45,7 +45,7 @@ const currentDateList = computed(() => {
 const [visible, toggleVisible] = useToggle(false)
 function closeVisible() {
   toggleVisible(false)
-  currentDatePage = 0
+  currentDatePage.value = 0
 }
 
 function handleChooseTime(time: number) {
@@ -53,13 +53,13 @@ function handleChooseTime(time: number) {
   const mode = props.mode
   const timeObj = dayjs(date.value)
   if (mode === 'DAY')
-    date.value = timeObj.add(currentDatePage, 'month').set('date', time).toDate()
+    date.value = timeObj.add(currentDatePage.value, 'month').set('date', time).toDate()
 
   else if (mode === 'MONTH')
     date.value = timeObj.set('month', time - 1).toDate()
 
   else if (mode === 'YEAR')
-    date.value = timeObj.add(currentDatePage * 9, 'year').set('year', time).toDate()
+    date.value = timeObj.add(currentDatePage.value * 9, 'year').set('year', time).toDate()
 }
 </script>
 
