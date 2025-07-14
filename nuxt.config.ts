@@ -5,17 +5,21 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     '@nuxtjs/color-mode',
   ],
+
   experimental: {
     payloadExtraction: false,
     reactivityTransform: true,
     inlineSSRStyles: false,
   },
+
   css: [
     '@unocss/reset/tailwind.css',
   ],
+
   colorMode: {
     classSuffix: '',
   },
+
   nitro: {
     esbuild: {
       options: {
@@ -28,6 +32,7 @@ export default defineNuxtConfig({
       ignore: ['/hi'],
     },
   },
+
   app: {
     head: {
       viewport: 'width=device-width,initial-scale=1',
@@ -40,4 +45,6 @@ export default defineNuxtConfig({
       ],
     },
   },
+
+  compatibilityDate: '2025-07-14',
 })
